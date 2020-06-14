@@ -1,0 +1,42 @@
+<!-- step02_ajax_json_jquery.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax Get</title>
+    <script type="text/javascript" src="jquery-3.5.1.js"></script>
+    <script>
+        
+
+        $(function(){
+            $('#btn').click(function(){
+            	
+             var address = encodeURIComponent('http://inspct.career.go.kr/openapi/test/questions?apikey=7a9bfb18b65bfce78a1535c601987455&q=10');
+                
+             $.ajax({
+                    url : 'proxy.jsp?url+'address,
+                    type :'GET',
+                    dataType : 'json',
+                    error : function(){
+                        alert('error');
+                    },
+                    success : function(obj){
+                    	
+                      	$('#sel').append(JSON.stringify(obj));
+                    }
+                });
+            });
+        });
+
+
+
+    </script>
+</head>
+<body>
+    <button id="btn">가져오기</button>
+    <div id="sel">
+
+    </div>
+</body>
+</html>
