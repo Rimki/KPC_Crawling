@@ -2,20 +2,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ajax Get</title>
-    <script type="text/javascript" src="jquery-3.5.1.js"></script>
-    <script>
-        
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ajax Get</title>
+<script type="text/javascript" src="jquery-3.5.1.js"></script>
+<script>
 
         $(function(){
             $('#btn').click(function(){
-            	
-             var address = encodeURIComponent('http://inspct.career.go.kr/openapi/test/questions?apikey=7a9bfb18b65bfce78a1535c601987455&q=10');
+           
+             var address = encodeURIComponent('http://inspct.career.go.kr/openapi/test/questions?apikey=7a9bfb18b65bfce78a1535c601987455&q=5');
                 
              $.ajax({
-                    url : 'proxy.jsp?url+'address,
+                    url : 'proxy.jsp?url='+address,
                     type :'GET',
                     dataType : 'json',
                     error : function(){
@@ -23,10 +22,28 @@
                     },
                     success : function(obj){
                     	
-                      	$('#sel').append(JSON.stringify(obj));
+						console.log(obj);
+                     	let quest = obj["RESULT"]
+ 						//console.log(ar);
+                     	for(let i = 0; i<quest.length; i++){
+	                        $("#sel").append("<div>"+(i+1)+". "+quest[i].question+"</div>");
+	                        
+	                        for(let j =1; j<11; j++){
+	                        let value = [quest[i].answer01,quest[i].answer02,quest[i].answer03,quest[i].answer04,quest[i].answer05,
+	                        	quest[i].answer06,quest[i].answer07,quest[i].answer08,quest[i].answer09,quest[i].answer10];
+	                        $("#sel").append("<input type='radio' name='chk"+i+"' value=" +j+ ">" +value[j-1]+"<br>");
+	                        if(value[j] === null) break;
+	                        }
+                    		$("#sel").append("<br>");
+                    	}
                     }
                 });
             });
+            $('#radioButton').click(function () {
+                // getter
+                var radioVal = $('input[name="chk1"]:checked').val();
+                alert(radioVal);
+              });
         });
 
 
@@ -34,9 +51,7 @@
     </script>
 </head>
 <body>
-    <button id="btn">가져오기</button>
-    <div id="sel">
-
-    </div>
+	<button id="btn">가져오기</button>
+	<div id="sel"></div>
 </body>
 </html>

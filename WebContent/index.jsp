@@ -7,12 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	헬로 제이에스피
-	<%
-		for(int i=0;i<100;i++){
-			out.println("hello<br>");
-		}
-	
-	%>
+	검사종류를 선택하세요!
+	<button></button>
 </body>
 </html>

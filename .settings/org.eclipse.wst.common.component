@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="KSP_Crawling">
+        
+    <wb-module deploy-name="KPC_Crawling">
+                
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+                
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="java-output-path" value="/KSP_Crawling/build/classes"/>
-        <property name="context-root" value="KSP_Crawling"/>
+                
+        <property name="java-output-path" value="/KPC_Crawling/build/classes"/>
+        <property name="context-root" value="KPC_Crawling"/>
+            
     </wb-module>
+    
 </project-modules>
