@@ -37,6 +37,9 @@
         	let school = request.getParameter("school");
         	let grade;
         	let trgetSe;
+        	let choice = request.getParameter("choice");
+        	let answerString;
+        	let quest;
         	
         	if(choice==19)
         		trgetSe = "100205";
@@ -47,15 +50,25 @@
         	else{
         		trgetSe = "100209";
         	}
-        	
+        	if(school!=null){
         	if(school.slice(-3,-2)=="중")
         		 grade= String(Number(age)-13);
         	else
         		 grade= String(Number(age)-16);
         	
+        	}else
+        		grade="";
         	
-        	let choice = request.getParameter("choice");
         	let apikey = "7a9bfb18b65bfce78a1535c601987455";
+        	
+        	
+        	function getObj(){
+        		this.getParameter = function(param){
+        			let obj = param;
+        			
+        			return obj;
+        		}
+        	}        	       	
         	
         	$(document).ready(function(){
            
@@ -73,8 +86,8 @@
                     success : function(obj){
                     	
 						console.log(obj);
-                     	let quest = obj["RESULT"]
- 						//console.log(ar);
+                     	quest = obj["RESULT"];
+                     	
                      	for(let i = 0; i<quest.length; i++){
 	                        $("#sel").append("<div>"+(i+1)+". "+quest[i].question+"</div>");
 	                       
@@ -95,58 +108,74 @@
                 });
             });
         	
-        	
-            $('#radioButton').click(function () {
-                // getter
-            	 if(choice==4 || choice==5 || choice==17 || choice==18){
-            		 for(let i=0;i<quest.length;i++){
-                         var radioVal = $('input[name="chk"'+i+']:checked').val();
-                        	
+      
+            
+          
+            
+            $('#go').click(function(){
+            	
+            	
+            	if(choice==4 || choice==5 || choice==17 || choice==18){
+            		var arr = new Array();
+            		 for(let i=1;i<=quest.length;i++){
+                         var radioVal = $('input[name="chk'+i+'"]:checked').val();
+                        		arr.push("A"+i+"="+radioVal);
                          }
+            		answerString = arr.join(" ");
+            		 console.log(answerString);
                  }
                 
             	 else if(choice==6){
-            		 for(let i=0;i<quest.length;i++){
-                         var radioVal = $('input[name="chk"'+i+']:checked').val();
-                        	
+            		 var arr = new Array();
+            		 for(let i=1;i<=quest.length-1;i++){
+                         var radioVal =$('input[name="chk'+i+'"]:checked').val();
+                         		arr.push("B"+i+"="+radioVal);                        		
                          }
+            		 arr.push("B28=1");
+            		 answerString = arr.join(" ");
+            		 console.log(answerString);
                  }
                 
             	 else if(choice==8 || choice==9 || choice==10){
-            		 for(let i=0;i<quest.length;i++){
-                         var radioVal = $('input[name="chk"'+i+']:checked').val();
-                        	
+            		 var arr = new Array();
+            		 for(let i=1;i<=quest.length;i++){
+                         var radioVal = $('input[name="chk'+i+'"]:checked').val();
+                         		arr.push(radioVal);
                          }
+            		 answerString = arr.join(" ");
+            		 console.log(answerString);
                  }
                 
-            	 else if(choice==4 || choice==5 || choice==17 || choice==18){
-            		 for(let i=0;i<quest.length;i++){
-                         var radioVal = $('input[name="chk"'+i+']:checked').val();
-                        	
+            	 else if(choice==19 || choice==20 || choice==21 || choice==22 ||choice==23){
+            		 var arr = new Array();
+            		 for(let i=1;i<=quest.length;i++){
+                         var radioVal = $('input[name="chk'+i+'"]:checked').val();
+                         		arr.push(i+"="+radioVal);
                          }
+            		 answerString = arr.join(" ");
+            		 console.log(answerString);
                  }
-                
-                
-                
-              });
-            
-            var postJson ={
-            		"apikey":apikey,
-           			"qestrnSeq":choice,
-           			"trgetSe":trgetSe,
-           			"name": name,
-           			"gender":gender,
-           			"school":school,
-           			"grade": grade,
-           			"email":"",
-           			"startDtm":1550466291034,
-           			"answers":answerString
-	            };
-            
-            
-            $('#go').click(function(){
+            	
+            	
+            	
+            	
+            	
+            	  var postJson ={
+                  		"apikey":apikey,
+                 			"qestrnSeq":choice,
+                 			"trgetSe":trgetSe,
+                 			"name": name,
+                 			"gender":gender,
+                 			"school":school,
+                 			"grade": grade,
+                 			"email":"",
+                 			"startDtm":1550466291034,
+                 			"answers": answerString
+      	            };
+                  
+            	  console.log(JSON.stringify(postJson));
             $.ajax({
-            	url : 'http://inspct.career.go.kr/openapi/test/report?apikey=7a9bfb18b65bfce78a1535c601987455&qestrnSeq=20',
+            	url : 'http://inspct.career.go.kr/openapi/test/report?apikey=7a9bfb18b65bfce78a1535c601987455&qestrnSeq='+choice,
             	type : 'POST',
             	dataType : 'json',
             	contentType : 'application/json',
