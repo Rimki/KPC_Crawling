@@ -51,7 +51,7 @@
     	
     		<div class="col-md-12">
     			<!-- form start -->
- <form id= "frm" method="get" action="ajax_proxy.jsp">
+ <form id= "frm" method="get" action="ajax_proxy.jsp" accept-charset="utf-8" onsubmit="emulAcceptCharset(this)">
     			
   <div class="form-group">
     <label for="exampleFormControlInput1">이름</label>
@@ -59,7 +59,7 @@
   </div>
   <div class="form-group">
     <label for="exampleFormControlInput2">나이</label>
-    <input type="text" class="form-control" id="age" name="age" >
+    <input type="number" class="form-control" id="age" name="age" min="1" max="100" >
   </div>
   <div class="form-group">
     <label for="exampleFormControlInput3">성별</label><br>
@@ -116,6 +116,9 @@
 				let result = FieldCheck()==true?true:false;
 				console.log(result);
 				if(result){
+					$("#name").val(encodeURIComponent($("#name").val()));
+					$("#school").val(encodeURIComponent($("#school").val()));
+					
 					$("#btn").prop("type","submit");//전부다 채웠으면 통과
 				}
 			});
@@ -134,7 +137,7 @@
 				return false;
 			}
 			
-			if(age==""){
+			if(age==0){
 				alert("나이를 입력하세요");
 				result = false;
 				return false;
@@ -153,6 +156,13 @@
 			}
 			return result;
 		};
+		
+		function emulAcceptCharset(form) {
+		    if (form.canHaveHTML) { // detect IE
+		        document.charset = form.acceptCharset;
+		    }
+		    return true;
+		}
 	</script>
 </body>
 </html>

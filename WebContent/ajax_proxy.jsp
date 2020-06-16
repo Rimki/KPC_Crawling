@@ -23,20 +23,19 @@
 						break;
 					}
 				}
-				return requestParam;
+				return decodeURI(decodeURIComponent(requestParam));
 			}		
 	
 		}
 		
         $(function(){
         	let request = new Request(); //home.html에서 parameter 가져옴
-        	//request.setCharacterEncoding("utf-8");
+        
         	let name = request.getParameter("name");
         	let age = request.getParameter("age");
         	let gender = request.getParameter("gender");
         	let school = request.getParameter("school");
         	let choice = request.getParameter("choice");
-        	
         	
         	$(document).ready(function(){
            
