@@ -68,25 +68,25 @@
 	</div>
 	<div class="form-group">
     <label for="exampleFormControlInput4">학교</label>
-    <input type="text" class="form-control" id="school" name="school" >
+    <input type="text" class="form-control" id="school" name="school" placeholder="아형고 (X) 아형고등학교(O)">
   </div>
   <div class="form-group">
     <label for="exampleFormControlSelect5">종류 선택</label>
     <select class="form-control" id="choice" name="choice">
       <option value="null">=======선 택=======</option>
-      <option value="4">직업흥미검사(K)- 중학생</option>
-      <option value="5">직업흥미검사(K)- 고등학생</option>
-      <option value="6">직업가치관검사</option>
-      <option value="8">진로개발준비도검사</option>
-      <option value="9">이공계전공적합도검사</option>
-      <option value="10">주요능력효능감검사</option>
-      <option value="17">직업흥미검사(H)- 중학생</option>
-      <option value="18">직업흥미검사(H)- 고등학생</option>
-      <option value="19">진로흥미탐색</option>
-      <option value="20">직업적성검사 - 중학생</option>
-      <option value="21">직업적성검사 - 고등학생</option>
-      <option value="22">진로성숙도검사 - 중학생</option>
-      <option value="23">진로성숙도검사 - 고등학생</option>
+      <option value="4" disabled>직업흥미검사(K)- 중학생</option>
+      <option value="5" disabled>직업흥미검사(K)- 고등학생</option>
+      <option value="6" disabled>직업가치관검사</option>
+      <option value="8" disabled>진로개발준비도검사</option>
+      <option value="9" disabled>이공계전공적합도검사</option>
+      <option value="10" disabled>주요능력효능감검사</option>
+      <option value="17" disabled>직업흥미검사(H)- 중학생</option>
+      <option value="18" disabled>직업흥미검사(H)- 고등학생</option>
+      <option value="19" disabled>진로흥미탐색</option>
+      <option value="20" disabled>직업적성검사 - 중학생</option>
+      <option value="21" disabled>직업적성검사 - 고등학생</option>
+      <option value="22" disabled>진로성숙도검사 - 중학생</option>
+      <option value="23" disabled>진로성숙도검사 - 고등학생</option>
     </select>
   </div>
   
@@ -163,6 +163,41 @@
 		    }
 		    return true;
 		}
+		
+		$("#age").on("change keyup paste",function(){
+			/* var currentVal = $(this).val();
+			if(currentVal == oldVal){
+				return ;
+			}
+			
+			oldVal = currentVal;
+			 */
+			 let age =$("#age").val();
+			 
+			if(age<14){
+				$("select option[value=19]").prop('disabled',false);
+			}else if(age>13 && age<17){
+				$("select option[value=4]").prop('disabled',false);
+				$("select option[value=6]").prop('disabled',false);
+				$("select option[value=17]").prop('disabled',false);
+				$("select option[value=20]").prop('disabled',false);
+				$("select option[value=22]").prop('disabled',false);
+			}else if(age>16 && age <20){
+				$("select option[value=5]").prop('disabled',false);
+				$("select option[value=6]").prop('disabled',false);
+				$("select option[value=17]").prop('disabled',false);
+				$("select option[value=21]").prop('disabled',false);
+				$("select option[value=23]").prop('disabled',false);
+			}else {
+				$("select option[value=6]").prop('disabled',false);
+				$("select option[value=8]").prop('disabled',false);
+				$("select option[value=9]").prop('disabled',false);
+				$("select option[value=10]").prop('disabled',false);
+			}
+			
+			
+		});
+		
 	</script>
 </body>
 </html>
