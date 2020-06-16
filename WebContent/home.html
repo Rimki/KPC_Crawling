@@ -51,14 +51,15 @@
     	
     		<div class="col-md-12">
     			<!-- form start -->
-    			<form method="get" action="ajax_proxy.html">
+ <form id= "frm" method="get" action="ajax_proxy.jsp">
+    			
   <div class="form-group">
     <label for="exampleFormControlInput1">이름</label>
-    <input type="name" class="form-control" id="name" placeholder="홍길동">
+    <input type="text" class="form-control" id= "name" name="name" placeholder="홍길동">
   </div>
   <div class="form-group">
     <label for="exampleFormControlInput2">나이</label>
-    <input type="age" class="form-control" id="age" >
+    <input type="text" class="form-control" id="age" name="age" >
   </div>
   <div class="form-group">
     <label for="exampleFormControlInput3">성별</label><br>
@@ -67,12 +68,12 @@
 	</div>
 	<div class="form-group">
     <label for="exampleFormControlInput4">학교</label>
-    <input type="name" class="form-control" id="school" >
+    <input type="text" class="form-control" id="school" name="school" >
   </div>
   <div class="form-group">
     <label for="exampleFormControlSelect5">종류 선택</label>
-    <select class="form-control" id="exampleFormControlSelect1">
-      <option value="none">=======선 택=======</option>
+    <select class="form-control" id="choice" name="choice">
+      <option value="null">=======선 택=======</option>
       <option value="4">직업흥미검사(K)- 중학생</option>
       <option value="5">직업흥미검사(K)- 고등학생</option>
       <option value="6">직업가치관검사</option>
@@ -91,7 +92,7 @@
   
   <div>
   
-  <button class="btn btn-primary" type="submit">시작</button>
+  <button class="btn btn-primary" id="btn" type="button">시작</button>
   </form>
   </div>
   
@@ -110,7 +111,48 @@
 </footer>
     
 	<script>
-	
+		$(document).ready(function(){//빈 칸 검사 
+			$("#btn").click(function(){
+				let result = FieldCheck()==true?true:false;
+				console.log(result);
+				if(result){
+					$("#btn").prop("type","submit");//전부다 채웠으면 통과
+				}
+			});
+		});
+		
+		function FieldCheck(){ //빈 칸 검사 함수
+			let result = true;
+			let name =$("#name").val();
+			let age =$("#age").val();
+			let gender =$('input[name="gender"]').is(':checked');
+			let opt = $("#choice").val();
+			
+			if(name==""){
+				alert("이름을 입력하세요");
+				result = false;
+				return false;
+			}
+			
+			if(age==""){
+				alert("나이를 입력하세요");
+				result = false;
+				return false;
+			}
+			
+			if(gender==false){
+				alert("성별을 선택하세요");
+				result = false;
+				return false;
+			}
+			
+			if(opt=="null"){
+				alert("검사종류를 선택하세요");
+				result = false;
+				return false;
+			}
+			return result;
+		};
 	</script>
 </body>
 </html>
