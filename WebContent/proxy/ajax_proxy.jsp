@@ -5,9 +5,28 @@
 <head>
 <meta charset="UTF-8">
 <title>진로 검사</title>
+<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+	<!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../js/jquery-3.5.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/ulg/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    
+    <style>
+    
+    </style>
+   
+</head>
+<body>
+	<div id="sel"></div>
+	<button type="click" id="go">제출</button>
+</body>
 
-<script type="text/javascript" src="jquery-3.5.1.js"></script>
-<script>
+
+
+	<script type="text/javascript" src="../js/jquery-3.5.1.js"></script>
+	<script>
 		
 		function Request(){ //Request 함수 구현
 			let requestParam = "";
@@ -53,11 +72,12 @@
         	}
         	
         	if(school!=null){
-        	if(school.slice(-3,-2)=="중")
+        	if(age>13 && age<17)
         		 grade= String(Number(age)-13);
-        	else
+        	else if(age>16 && age<20)
         		 grade= String(Number(age)-16);
-        	
+        	else if(age<14)
+        		 grade= String(Number(age)-7);
         	}else
         		grade="";
         	
@@ -190,9 +210,4 @@
 
 
     </script>
-</head>
-<body>
-	<div id="sel"></div>
-	<button type="click" id="go">제출</button>
-</body>
 </html>
