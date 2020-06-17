@@ -31,6 +31,7 @@
         $(function(){
         	let request = new Request(); //home.html에서 parameter 가져옴
         
+        	let apikey = "7a9bfb18b65bfce78a1535c601987455";
         	let name = request.getParameter("name");
         	let age = request.getParameter("age");
         	let gender = request.getParameter("gender");
@@ -50,6 +51,7 @@
         	else{
         		trgetSe = "100209";
         	}
+        	
         	if(school!=null){
         	if(school.slice(-3,-2)=="중")
         		 grade= String(Number(age)-13);
@@ -59,16 +61,6 @@
         	}else
         		grade="";
         	
-        	let apikey = "7a9bfb18b65bfce78a1535c601987455";
-        	
-        	
-        	function getObj(){
-        		this.getParameter = function(param){
-        			let obj = param;
-        			
-        			return obj;
-        		}
-        	}        	       	
         	
         	$(document).ready(function(){
            
@@ -96,22 +88,18 @@
 	                    	
 	                        for(let j =1; j<11; j++){
 	                        	if(value[j-1]!=null )
-	                    		$("#sel").append("<input type='radio' name='chk"+i+"' value=" +j+ ">" +value[j-1]+"<br>");
+	                    		$("#sel").append("<input type='radio' name='chk"+(i+1)+"' value=" +j+ ">" +value[j-1]+"<br>");
 	                        	else
 	                        		continue;
 	                        }
 	                    	
-                       
                     		$("#sel").append("<br>");
                     	}
                     }
                 });
             });
         	
-      
-            
-          
-            
+         
             $('#go').click(function(){
             	
             	
@@ -121,17 +109,17 @@
                          var radioVal = $('input[name="chk'+i+'"]:checked').val();
                         		arr.push("A"+i+"="+radioVal);
                          }
-            		answerString = arr.join(" ");
+            		 answerString = arr.join(" ");
             		 console.log(answerString);
                  }
                 
             	 else if(choice==6){
             		 var arr = new Array();
-            		 for(let i=1;i<=quest.length-1;i++){
+            		 for(let i=1;i<=quest.length;i++){
                          var radioVal =$('input[name="chk'+i+'"]:checked').val();
                          		arr.push("B"+i+"="+radioVal);                        		
                          }
-            		 arr.push("B28=1");
+            		 
             		 answerString = arr.join(" ");
             		 console.log(answerString);
                  }
@@ -140,9 +128,13 @@
             		 var arr = new Array();
             		 for(let i=1;i<=quest.length;i++){
                          var radioVal = $('input[name="chk'+i+'"]:checked').val();
-                         		arr.push(radioVal);
+                         		if(i==quest.length)		
+                         			arr.push(radioVal);
+                         		else
+                         			arr.push(radioVal+",");
+                         			
                          }
-            		 answerString = arr.join(" ");
+            		 answerString = arr.join();
             		 console.log(answerString);
                  }
                 
@@ -162,20 +154,21 @@
             	
             	  var postJson ={
                   		"apikey":apikey,
-                 			"qestrnSeq":choice,
-                 			"trgetSe":trgetSe,
-                 			"name": name,
-                 			"gender":gender,
-                 			"school":school,
-                 			"grade": grade,
-                 			"email":"",
-                 			"startDtm":1550466291034,
-                 			"answers": answerString
+                 		"qestrnSeq":choice,
+                 		"trgetSe":trgetSe,
+                 		"name": name,
+                 		"gender":gender,
+                 		"school":school,
+                 		"grade": grade,
+                 		"email":"",
+                 		"startDtm":1550466291034,
+                 		"answers": answerString
       	            };
                   
             	  console.log(JSON.stringify(postJson));
+            	  
             $.ajax({
-            	url : 'http://inspct.career.go.kr/openapi/test/report?apikey=7a9bfb18b65bfce78a1535c601987455&qestrnSeq='+choice,
+            	url : 'http://inspct.career.go.kr/openapi/test/report?apikey='+apikey+'&qestrnSeq='+choice,
             	type : 'POST',
             	dataType : 'json',
             	contentType : 'application/json',
@@ -189,7 +182,7 @@
 	                	console.log(url);
 	                	location.href = url;
 	                }
-            });
+            	});
             
         	});
         });

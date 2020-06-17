@@ -131,28 +131,28 @@
 			let gender =$('input[name="gender"]').is(':checked');
 			let opt = $("#choice").val();
 			
-			if(name==""){
+			if(!name){
 				alert("이름을 입력하세요");
 				result = false;
-				return false;
+				return;
 			}
 			
-			if(age==0){
+			if(!age){
 				alert("나이를 입력하세요");
 				result = false;
-				return false;
+				return;
 			}
 			
-			if(gender==false){
+			if(!gender){
 				alert("성별을 선택하세요");
 				result = false;
-				return false;
+				return;
 			}
 			
 			if(opt=="null"){
 				alert("검사종류를 선택하세요");
 				result = false;
-				return false;
+				return;
 			}
 			return result;
 		};
@@ -165,13 +165,7 @@
 		}
 		
 		$("#age").on("change keyup paste",function(){
-			/* var currentVal = $(this).val();
-			if(currentVal == oldVal){
-				return ;
-			}
 			
-			oldVal = currentVal;
-			 */
 			 let age =$("#age").val();
 			 
 			if(age<14){
