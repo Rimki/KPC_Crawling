@@ -129,6 +129,7 @@
   <footer class="bd-footer bg-dark text-muted" >
 	<div class="container-fluid p-3 p-md-5" >
 		<p> 5조 OpenApi & Crawling 프로젝트 : WhoAmI</p>
+		<p> 조원 : 김기훈 안무현 이솔 조민지</p>
     	<p>사용한 api : <a href="http://www.career.go.kr/cnet/front/openapi/openApiTestCenter.do" target="_blank" rel="license noopener">CareerNet 진로심리검사 OpenApi</a> <br> 코드 보기 : <a href="https://www.github.com/rimki/Kpc_Crawling" target="_blank" rel="license noopener">github.com/rimki/Kpc_Crawling</a></p>
 	</div>
 </footer>
@@ -194,11 +195,23 @@
 		 
 		 if(age>6 && age<14){
 				$('[label="초등학생"]').prop('disabled',false);
+				$('[label="중학생"]').prop('disabled',true);
+				$('[label="고등학생"]').prop('disabled',true);
+				$('[label="성인"]').prop('disabled',true);
 			}else if(age>13 && age<17){
+				$('[label="초등학생"]').prop('disabled',true);
 				$('[label="중학생"]').prop('disabled',false);
+				$('[label="고등학생"]').prop('disabled',true);
+				$('[label="성인"]').prop('disabled',true);
 			}else if(age>16 && age <20){
+				$('[label="초등학생"]').prop('disabled',true);
+				$('[label="중학생"]').prop('disabled',true);
 				$('[label="고등학생"]').prop('disabled',false);
+				$('[label="성인"]').prop('disabled',true);
 			}else if(age>19){
+				$('[label="초등학생"]').prop('disabled',true);
+				$('[label="중학생"]').prop('disabled',true);
+				$('[label="고등학생"]').prop('disabled',true);
 				$('[label="성인"]').prop('disabled',false);
 			}
 	});

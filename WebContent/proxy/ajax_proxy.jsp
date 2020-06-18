@@ -86,6 +86,7 @@
 <footer class="bd-footer bg-dark text-muted" >
 	<div class="container-fluid p-3 p-md-5" >
 		<p> 5조 OpenApi & Crawling 프로젝트 : WhoAmI</p>
+		<p> 조원 : 김기훈 안무현 이솔 조민지</p>
     	<p>사용한 api : <a href="http://www.career.go.kr/cnet/front/openapi/openApiTestCenter.do" target="_blank" rel="license noopener">CareerNet 진로심리검사 OpenApi</a> <br> 코드 보기 : <a href="https://www.github.com/rimki/Kpc_Crawling" target="_blank" rel="license noopener">github.com/rimki/Kpc_Crawling</a></p>
 	</div>
 	
@@ -156,19 +157,19 @@
         		
         		if(t==6){
         			for(let i = 0; i<obj.length; i++){
-                        $("#sel").append("<div style='font-size:145%; margin: 0 0 5px 0'>"+(i+1)+". "+quest[i].question+"</div>");
+                        $("#sel").append("<div class='alert alert-success' role='alert' style='font-size:145%; margin: 0 0 5px 0'>"+(i+1)+". "+quest[i].question+"</div>");
                        
                         let value = [obj[i].answer01,obj[i].answer02,obj[i].answer03,obj[i].answer04,obj[i].answer05,
                         	obj[i].answer06,obj[i].answer07,obj[i].answer08,obj[i].answer09,obj[i].answer10];
                     	
                         for(let j =1; j<3; j++){
-                        	
                         	if(value[j-1]!=null )
-                    		$("#sel").append("<input type='radio' name='chk"+(i+1)+"' value=" +j+ ">" +value[j-1]+"<br>");
+                    		$("#sel").append("<label class = 'btn btn-info' for = 'btn"+(i+1)+"'><input type='radio' name='chk"+(i+1)+"' id='option"+j+"' value = "+j+">"+value[j-1]+"</label>");
                         	else
                         		continue;
                         }
-     		           		$("#sel").append("<br><br>");
+                        $('label[for="btn'+(i+1)+'"]').wrapAll("<div class= 'btn-group btn-group-toggle col-sm-12' data-toggle = 'buttons'></div>");	
+     		           		$("#sel").append("<br><br><br>");
             			}
         			
         		}
@@ -183,12 +184,12 @@
                 	
                     for(let j =1; j<11; j++){
                     	if(value[j-1]!=null )
-                		$("#sel").append("<label class = 'btn btn-info' for = 'btn"+(i+1)+"'><input type='radio' name='chk"+(i+1)+"' id='option"+j+"' value = "+j+">"+value[j-1]+"</label><br>");
+                		$("#sel").append("<label class = 'btn btn-info' for = 'btn"+(i+1)+"'><input type='radio' name='chk"+(i+1)+"' id='option"+j+"' value = "+j+">"+value[j-1]+"</label>");
                     	else
                     		continue;
                     }
-                    $('label[for="btn'+(i+1)+'"]').wrapAll("<div class= 'btn-group btn-group-toggle' data-toggle = 'buttons'></div>");	
- 		           		$("#sel").append("<br><br>");
+                    $('label[for="btn'+(i+1)+'"]').wrapAll("<div class= 'btn-group btn-group-toggle col-sm-12' data-toggle = 'buttons'></div>");	
+ 		           		$("#sel").append("<br><br><br>");
         			}
         		}
         	};
