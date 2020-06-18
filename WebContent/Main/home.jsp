@@ -46,8 +46,10 @@
 	font-size: 25px;
 	}
 </style>
+
 </head>
 <body>
+<!-- HEADER START -->
 <nav class="navbar navbar-expand-md navbar-dark " style="background-color:#17d348;">
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
     	<span class="navbar-toggler-icon"></span>
@@ -60,10 +62,10 @@
 		</form>
 	</div>
 </nav>
-
+<!-- HEADER END -->
 
 	
-
+<!-- BODY START -->
 <div class="container">
    	<div class="row">
    		<div class="col-md-3"></div>
@@ -125,7 +127,9 @@
 		</div>
 	</div>
 </div>
-  
+ <!-- BODY END -->
+ 
+ <!-- FOOTER START -->
   <footer class="bd-footer bg-dark text-muted" >
 	<div class="container-fluid p-3 p-md-5" >
 		<p> 5조 OpenApi & Crawling 프로젝트 : WhoAmI</p>
@@ -133,55 +137,79 @@
     	<p>사용한 api : <a href="http://www.career.go.kr/cnet/front/openapi/openApiTestCenter.do" target="_blank" rel="license noopener">CareerNet 진로심리검사 OpenApi</a> <br> 코드 보기 : <a href="https://www.github.com/rimki/Kpc_Crawling" target="_blank" rel="license noopener">github.com/rimki/Kpc_Crawling</a></p>
 	</div>
 </footer>
-
+<!--  FOOTER END -->
  </body>
 <script>
-	$(document).ready(function(){//빈 칸 검사 
+	
+	 
+	$(document).ready(function(){ 
+		
+		/* 
+			--------------------------------
+			시작버튼 클릭하면 반응하는 함수
+			--------------------------------
+		*/  
 		$("#btn").click(function(){
+			// 빈 칸 검사 함수 호출
 			let result = FieldCheck()==true?true:false;
-			console.log(result);
+
+			// 빈 칸이 없으면...
 			if(result){
+				// 한글값인 이름과 학교 encoding
 				$("#name").val(encodeURIComponent($("#name").val()));
 				$("#school").val(encodeURIComponent($("#school").val()));
 				
+				// 버튼 타입을 click에서 submit으로 변경
 				$("#btn").prop("type","submit");//전부다 채웠으면 통과
 			}
 		});
 	});
 	
-	function FieldCheck(){ //빈 칸 검사 함수
+	/* 
+		--------------------------------
+		시작버튼 클릭하면 반응하는 함수
+		--------------------------------
+	*/  
+	function FieldCheck(){ 
 		let result = true;
 		let name =$("#name").val();
 		let age =$("#age").val();
 		let gender =$('input[name="gender"]').is(':checked');
 		let opt = $("#choice").val();
 		
+		//이름 검사
 		if(!name){
 			alert("이름을 입력하세요");
 			result = false;
 			return;
 		}
-		
+		// 나이 검사
 		if(!age){
 			alert("나이를 입력하세요");
 			result = false;
 			return;
 		}
-		
+		// 성별 검사
 		if(!gender){
 			alert("성별을 선택하세요");
 			result = false;
 			return;
 		}
-		
+		// 검사 종류 확인
 		if(opt=="null"){
 			alert("검사종류를 선택하세요");
 			result = false;
 			return;
 		}
+		// 모두 기입하면 true return
 		return result;
 	};
 	
+	/* 
+		--------------------------------
+		form utf-8 인코딩 도움 함수
+		--------------------------------
+	*/  
 	function emulAcceptCharset(form) {
 	    if (form.canHaveHTML) { // detect IE
 	        document.charset = form.acceptCharset;
@@ -189,29 +217,42 @@
 	    return true;
 	}
 	
+	/* 
+		--------------------------------
+		나이에 따라 검사 종류 제한하는 함수
+		--------------------------------
+	*/  
 	$("#age").on("change keyup paste",function(){
 		
 		 let age =$("#age").val();
 		 
+		 // 초등학생이면
 		 if(age>6 && age<14){
+			 //초등학생 관련 검사만 선택가능
 				$('[label="초등학생"]').prop('disabled',false);
 				$('[label="중학생"]').prop('disabled',true);
 				$('[label="고등학생"]').prop('disabled',true);
 				$('[label="성인"]').prop('disabled',true);
+		// 중학생이면		
 			}else if(age>13 && age<17){
 				$('[label="초등학생"]').prop('disabled',true);
+			//중학생 관련 검사만 선택가능
 				$('[label="중학생"]').prop('disabled',false);
 				$('[label="고등학생"]').prop('disabled',true);
 				$('[label="성인"]').prop('disabled',true);
+		// 고등학생이면		
 			}else if(age>16 && age <20){
 				$('[label="초등학생"]').prop('disabled',true);
 				$('[label="중학생"]').prop('disabled',true);
+			//고등학생 관련 검사만 선택가능	
 				$('[label="고등학생"]').prop('disabled',false);
 				$('[label="성인"]').prop('disabled',true);
+		// 성인이면		
 			}else if(age>19){
 				$('[label="초등학생"]').prop('disabled',true);
 				$('[label="중학생"]').prop('disabled',true);
 				$('[label="고등학생"]').prop('disabled',true);
+			// 성인 관련 검사만 선택가능
 				$('[label="성인"]').prop('disabled',false);
 			}
 	});
