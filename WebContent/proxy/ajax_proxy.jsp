@@ -82,6 +82,7 @@
 	</div>
 </div>
 
+
 <footer class="bd-footer bg-dark text-muted" >
 	<div class="container-fluid p-3 p-md-5" >
 		<p> 5조 OpenApi & Crawling 프로젝트 : WhoAmI</p>
@@ -180,27 +181,13 @@
                     let value = [obj[i].answer01,obj[i].answer02,obj[i].answer03,obj[i].answer04,obj[i].answer05,
                     	obj[i].answer06,obj[i].answer07,obj[i].answer08,obj[i].answer09,obj[i].answer10];
                 	
-                    
                     for(let j =1; j<11; j++){
-                    	
-                    	if(j==10){
-                    		$("#sel").append("</div>");
-                    	}
-                    	if(value[j-1]!=null ){
-                		//$("#sel").append("<input type='radio' name='chk"+(i+1)+"' value=" +j+ ">" +value[j-1]+"<br>");
-                		if(j==1){
-                		$("#sel").append("<div class= 'btn-group btn-group-toggle' data-toggle = 'buttons'>");
-                		}
-                		else{
-                		$("#sel").append("<label class = 'btn btn-info'><input type='radio' name='chk"+(i+1)+"' id='option"+j+"' value = "+j+">"+value[j-1]+"</label><br>");
-                		//$("#sel").append("<input type='radio' name='options"+(i+1)+"'>"+value[j-1]+"</label><br>");
-                		}
-                    	}
+                    	if(value[j-1]!=null )
+                		$("#sel").append("<label class = 'btn btn-info' for = 'btn"+(i+1)+"'><input type='radio' name='chk"+(i+1)+"' id='option"+j+"' value = "+j+">"+value[j-1]+"</label><br>");
                     	else
                     		continue;
-                    	
                     }
-                    	
+                    $('label[for="btn'+(i+1)+'"]').wrapAll("<div class= 'btn-group btn-group-toggle' data-toggle = 'buttons'></div>");	
  		           		$("#sel").append("<br><br>");
         			}
         		}
