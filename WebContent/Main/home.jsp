@@ -74,11 +74,11 @@
 			<form id= "frm" method="get" action="../proxy/ajax_proxy.jsp" accept-charset="utf-8" onsubmit="emulAcceptCharset(this)">
 	  				<div class="form-group col-md-12" style="margin:15px 0 0 0">
 	    				<label for="exampleFormControlInput1"><strong>이름</strong></label>
-	    				<input type="text" class="form-control" id= "name" name="name" placeholder="홍길동">
+	    				<input type="text" class="form-control" autocomplete="off" id= "name" name="name" placeholder="홍길동">
 	  				</div>
 					<div class="form-group col-md-12" style="margin:10px 0 0 0">
 	    				<label for="exampleFormControlInput2"><strong>나이</strong></label>
-	   					<input type="number" class="form-control" id="age" name="age" min="1" max="100" >
+	   					<input type="number" class="form-control" autocomplete="off" id="age" name="age" min="1" max="100" >
 	  				</div>
 	  				<div class="col-md-1"></div>
 	  				<div class="form-group col-md-10" style="margin:10px 0 0 0">
@@ -88,7 +88,7 @@
 					</div>
 				<div class="form-group col-md-12" style="margin:10px 0 0 0">
 				    <label for="exampleFormControlInput4"><strong>학교</strong></label>
-				    <input type="text" class="form-control" id="school" name="school" placeholder="아형고 (X) 아형고등학교(O)">
+				    <input type="text" class="form-control" autocomplete="off" id="school" name="school" placeholder="아형고 (X) 아형고등학교(O)">
 		  		</div>
 			    <div class="form-group col-md-12" style="margin:10px 0 0 0">
 					<label for="exampleFormControlSelect5"><strong>종류 선택</strong></label>
@@ -161,6 +161,7 @@
 				
 				// 버튼 타입을 click에서 submit으로 변경
 				$("#btn").prop("type","submit");//전부다 채웠으면 통과
+				
 			}
 		});
 	});
