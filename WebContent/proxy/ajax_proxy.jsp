@@ -14,13 +14,82 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
     
     <style>
-    
+    #btn{
+		margin:15px 0 15px 0;
+		text-align:center
+		}
+	html,
+	body {
+   		margin:0;
+   		padding:0;
+   		height:100%;
+		}
+	.container{
+   		min-height:100%;
+   		position:relative;
+   		padding-bottom:100px;/* footer height */
+		}
+    .footer {
+  		width:100%;
+  		height:100px;
+   		position:absolute;
+   		bottom:0;
+   		background:#5eaeff;
+  		text-align: center;
+  		color: white;
+		}	
+	.nav-link{
+		font-size:25px;
+		margin:0 0 8px 0;
+		color: white;
+	}
+	
+	#navbarTogglerDemo01 label{
+	font-size: 25px;
+	}
+	
+	#go{
+	margin:30px 0 30px 0;
+	}
+	
+	
     </style>
    
 </head>
 <body>
-	<div id="sel"></div>
-	<button type="click" id="go">제출</button>
+<div>
+<nav class="navbar navbar-expand-md fixed-top navbar-dark " style="background-color:#17d348;">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    	<span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+		<label class="navbar-brand" href="#" ><strong>진로 심리 검사 : WhoAmI</strong></label>
+		<ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
+		<form class="form-inline my-2 my-lg-0">
+			<a class="nav-link" href="http://localhost/KPC_Crawling/Main/home.jsp"><strong>홈</strong> <span class="sr-only">(current)</span></a>
+		</form>
+	</div>
+</nav>
+</div>
+	<div class="container" style="margin:100px auto;">
+	<div class="row" style="margin:0 auto;">
+		<div class="col-sm-2" ></div>
+		<div class="col-sm-8" >
+			<div id="sel"></div>
+			<button class="btn btn-primary col-sm-12" id="go" type="button">제출</button>
+		</div>
+		<div class="col-sm-2" ></div>
+	</div>
+</div>
+
+<footer class="bd-footer bg-dark text-muted" >
+	<div class="container-fluid p-3 p-md-5" >
+		<p> 5조 OpenApi & Crawling 프로젝트 : WhoAmI</p>
+    	<p>사용한 api : <a href="http://www.career.go.kr/cnet/front/openapi/openApiTestCenter.do" target="_blank" rel="license noopener">CareerNet 진로심리검사 OpenApi</a> <br> 코드 보기 : <a href="https://www.github.com/rimki/Kpc_Crawling" target="_blank" rel="license noopener">github.com/rimki/Kpc_Crawling</a></p>
+	</div>
+	
+</footer>
+
 </body>
 
 
@@ -84,98 +153,55 @@
         	
         	function print(t,obj){
         		
-        		if(t==18){
+        		if(t==6){
         			for(let i = 0; i<obj.length; i++){
-        				if(i+1 ==147)
-        					continue;
-        				
-        				if(i+1 == 131 || i+1 == 140 || i+1 == 144 || i+1 == 148 || i+1 == 152){
-        					$("#sel").append("<div><strong>"+"<"+quest[i].question+">"+"</strong></div>")
-        				}
-        				else
-        					$("#sel").append("<div>"+(i+1)+". "+quest[i].question+"</div>");
-        				
-        				 let value = [obj[i].answer01,obj[i].answer02,obj[i].answer03,obj[i].answer04,obj[i].answer05,
-                         	obj[i].answer06,obj[i].answer07,obj[i].answer08,obj[i].answer09,obj[i].answer10];
-                         
-        				 for(let j =1; j<11; j++){
-                         	if(value[j-1]!=null ){
-                         	//if(i+1 == 145 || i+1 ==146)
-                     		//$("#sel").append("<div class="item_select_answer"><div class="common_ipt_wrap type_dropmenu"><a href="javascript:void(0)" class="link_selected">직업을 선택해주세요.<span class="ico_common ico_arrow"></span></a> <span class="hidden">선택옵션</span> <div class="box_select" style="top: 43px; background: rgb(255, 255, 255); max-height: 131px; overflow-y: auto;"><ul class="list_select"><li><a href="javascript:void(0)" class="link_opt">가수</a></li><li><a href="javascript:void(0)" class="link_opt">간호사</a></li><li><a href="javascript:void(0)" class="link_opt">개그맨</a></li><li><a href="javascript:void(0)" class="link_opt">건축가</a></li><li><a href="javascript:void(0)" class="link_opt">경기심판</a></li><li><a href="javascript:void(0)" class="link_opt">경영컨설턴트</a></li><li><a href="javascript:void(0)" class="link_opt">경제학연구원</a></li><li><a href="javascript:void(0)" class="link_opt">경찰관</a></li><li><a href="javascript:void(0)" class="link_opt">경호원</a></li><li><a href="javascript:void(0)" class="link_opt">고위공무원</a></li><li><a href="javascript:void(0)" class="link_opt">공업기계조작원</a></li><li><a href="javascript:void(0)" class="link_opt">공인중개인</a></li><li><a href="javascript:void(0)" class="link_opt">과수작물 재배자</a></li><li><a href="javascript:void(0)" class="link_opt">교육학연구원</a></li><li><a href="javascript:void(0)" class="link_opt">교장</a></li><li><a href="javascript:void(0)" class="link_opt">국악인</a></li><li><a href="javascript:void(0)" class="link_opt">국제긴급구호요원</a></li><li><a href="javascript:void(0)" class="link_opt">국회의원</a></li><li><a href="javascript:void(0)" class="link_opt">군인</a></li><li><a href="javascript:void(0)" class="link_opt">극작가</a></li><li><a href="javascript:void(0)" class="link_opt">기업고위임원</a></li><li><a href="javascript:void(0)" class="link_opt">기자</a></li><li><a href="javascript:void(0)" class="link_opt">다문화가정상담전문가</a></li><li><a href="javascript:void(0)" class="link_opt">대체에너지개발연구원</a></li><li><a href="javascript:void(0)" class="link_opt">동물조련사</a></li><li><a href="javascript:void(0)" class="link_opt">드라마작가</a></li><li><a href="javascript:void(0)" class="link_opt">로봇연구원</a></li><li><a href="javascript:void(0)" class="link_opt">마술사</a></li><li><a href="javascript:void(0)" class="link_opt">만화가</a></li><li><a href="javascript:void(0)" class="link_opt">모델</a></li><li><a href="javascript:void(0)" class="link_opt">물리학자</a></li><li><a href="javascript:void(0)" class="link_opt">방송 작가</a></li><li><a href="javascript:void(0)" class="link_opt">변호사</a></li><li><a href="javascript:void(0)" class="link_opt">비서</a></li><li><a href="javascript:void(0)" class="link_opt">비행기승무원</a></li><li><a href="javascript:void(0)" class="link_opt">비행기조종사</a></li><li><a href="javascript:void(0)" class="link_opt">사서</a></li><li><a href="javascript:void(0)" class="link_opt">사회복지사</a></li><li><a href="javascript:void(0)" class="link_opt">상담가</a></li><li><a href="javascript:void(0)" class="link_opt">생물학자</a></li><li><a href="javascript:void(0)" class="link_opt">서비스강사</a></li><li><a href="javascript:void(0)" class="link_opt">세무사</a></li><li><a href="javascript:void(0)" class="link_opt">소방관</a></li><li><a href="javascript:void(0)" class="link_opt">소설가</a></li><li><a href="javascript:void(0)" class="link_opt">쇼핑호스트</a></li><li><a href="javascript:void(0)" class="link_opt">수학연구원</a></li><li><a href="javascript:void(0)" class="link_opt">스턴트맨</a></li><li><a href="javascript:void(0)" class="link_opt">스포츠강사</a></li><li><a href="javascript:void(0)" class="link_opt">스포츠트레이너</a></li><li><a href="javascript:void(0)" class="link_opt">시니어컨설턴트</a></li><li><a href="javascript:void(0)" class="link_opt">시인</a></li><li><a href="javascript:void(0)" class="link_opt">심리학연구원</a></li><li><a href="javascript:void(0)" class="link_opt">아나운서</a></li><li><a href="javascript:void(0)" class="link_opt">애니메이션작가</a></li><li><a href="javascript:void(0)" class="link_opt">역사학연구원</a></li><li><a href="javascript:void(0)" class="link_opt">연극연출가</a></li><li><a href="javascript:void(0)" class="link_opt">연기자</a></li><li><a href="javascript:void(0)" class="link_opt">연주가</a></li><li><a href="javascript:void(0)" class="link_opt">영화감독</a></li><li><a href="javascript:void(0)" class="link_opt">외교관</a></li><li><a href="javascript:void(0)" class="link_opt">외환딜러</a></li><li><a href="javascript:void(0)" class="link_opt">운동선수</a></li><li><a href="javascript:void(0)" class="link_opt">웹디자이너</a></li><li><a href="javascript:void(0)" class="link_opt">은행출납사무원</a></li><li><a href="javascript:void(0)" class="link_opt">응급구조사</a></li><li><a href="javascript:void(0)" class="link_opt">의사</a></li><li><a href="javascript:void(0)" class="link_opt">의학연구원</a></li><li><a href="javascript:void(0)" class="link_opt">이러닝(E-learning)교수설계사</a></li><li><a href="javascript:void(0)" class="link_opt">인테리어디자이너</a></li><li><a href="javascript:void(0)" class="link_opt">일러스트레이터</a></li><li><a href="javascript:void(0)" class="link_opt">일반공무원</a></li><li><a href="javascript:void(0)" class="link_opt">자동차영업원</a></li><li><a href="javascript:void(0)" class="link_opt">자동차정비원</a></li><li><a href="javascript:void(0)" class="link_opt">작곡가</a></li><li><a href="javascript:void(0)" class="link_opt">재활승마운동사</a></li><li><a href="javascript:void(0)" class="link_opt">제품디자이너</a></li><li><a href="javascript:void(0)" class="link_opt">조경원</a></li><li><a href="javascript:void(0)" class="link_opt">중∙고등학교 교사(문과)</a></li><li><a href="javascript:void(0)" class="link_opt">중∙고등학교 교사(이과)</a></li><li><a href="javascript:void(0)" class="link_opt">지질학연구원</a></li><li><a href="javascript:void(0)" class="link_opt">지휘자</a></li><li><a href="javascript:void(0)" class="link_opt">천문학자</a></li><li><a href="javascript:void(0)" class="link_opt">철도 및 지하철기관사</a></li><li><a href="javascript:void(0)" class="link_opt">철학연구원</a></li><li><a href="javascript:void(0)" class="link_opt">초등교사</a></li><li><a href="javascript:void(0)" class="link_opt">컴퓨터프로그래머</a></li><li><a href="javascript:void(0)" class="link_opt">특용작물 재배자</a></li><li><a href="javascript:void(0)" class="link_opt">판매원</a></li><li><a href="javascript:void(0)" class="link_opt">패션디자이너</a></li><li><a href="javascript:void(0)" class="link_opt">폴리아티스트(음향효과맨)</a></li><li><a href="javascript:void(0)" class="link_opt">프로게이머</a></li><li><a href="javascript:void(0)" class="link_opt">항공기정비원</a></li><li><a href="javascript:void(0)" class="link_opt">호텔지배인</a></li><li><a href="javascript:void(0)" class="link_opt">화가</a></li><li><a href="javascript:void(0)" class="link_opt">화학자</a></li><li><a href="javascript:void(0)" class="link_opt">화훼재배자</a></li><li><a href="javascript:void(0)" class="link_opt">회계사무원</a></li><li><a href="javascript:void(0)" class="link_opt">기타(오른쪽에 직접 입력)</a></li><li><a href="javascript:void(0)" class="link_opt">아직 결정 못함</a></li></ul></div></div> <div class="pnael_answer_inp"><input type="text" id="inpPanelAnswer" disabled="disabled" class="inp_answer"> <label for="inpPanelAnswer" class="lab_answer">기타 선택 시 직업명 입력</label></div></div><br>");
-                         	//else if(i+1 == 149 || i+1==150)
-                         	//$("#sel").append("<div class="common_ipt_wrap type_dropmenu"><a href="javascript:void(0)" class="link_selected">국어<span class="ico_common ico_arrow"></span></a> <span class="hidden">선택옵션</span> <div class="box_select" style="top: 43px; background: rgb(255, 255, 255); max-height: 131px; overflow-y: auto;"><ul class="list_select"><li><a href="javascript:void(0)" class="link_opt">국어</a></li><li><a href="javascript:void(0)" class="link_opt">사회(사회/역사)</a></li><li><a href="javascript:void(0)" class="link_opt">도덕</a></li><li><a href="javascript:void(0)" class="link_opt">수학</a></li><li><a href="javascript:void(0)" class="link_opt">과학</a></li><li><a href="javascript:void(0)" class="link_opt">기술가정</a></li><li><a href="javascript:void(0)" class="link_opt">체육</a></li><li><a href="javascript:void(0)" class="link_opt">음악</a></li><li><a href="javascript:void(0)" class="link_opt">미술</a></li><li><a href="javascript:void(0)" class="link_opt">영어</a></li><li><a href="javascript:void(0)" class="link_opt">한문</a></li><li><a href="javascript:void(0)" class="link_opt">보건</a></li><li><a href="javascript:void(0)" class="link_opt">진로와 직업</a></li><li><a href="javascript:void(0)" class="link_opt">제2외국어</a></li><li><a href="javascript:void(0)" class="link_opt">기타</a></li></ul></div></div><br>");
-                         	//else
-                         	$("#sel").append("<input type='radio' name='chk"+(i+1)+"' value=" +j+ ">" +value[j-1]+"<br>");
-                         	}
-                         	else
-                         		continue;
-                         }
-      		           		$("#sel").append("<br>");
-        			}
+                        $("#sel").append("<div style='font-size:145%; margin: 0 0 5px 0'>"+(i+1)+". "+quest[i].question+"</div>");
+                       
+                        let value = [obj[i].answer01,obj[i].answer02,obj[i].answer03,obj[i].answer04,obj[i].answer05,
+                        	obj[i].answer06,obj[i].answer07,obj[i].answer08,obj[i].answer09,obj[i].answer10];
+                    	
+                        for(let j =1; j<3; j++){
+                        	
+                        	if(value[j-1]!=null )
+                    		$("#sel").append("<input type='radio' name='chk"+(i+1)+"' value=" +j+ ">" +value[j-1]+"<br>");
+                        	else
+                        		continue;
+                        }
+     		           		$("#sel").append("<br><br>");
+            			}
+        			
         		}
-        		else if(t==17){
-        			for(let i = 0; i<obj.length; i++){
-        				if(i+1 ==159)
-        					continue;
-        				
-        				if(i+1 == 142 || i+1 == 152 || i+1 == 156 || i+1 == 160 || i+1 == 164){
-        					$("#sel").append("<div><strong>"+"<"+quest[i].question+">"+"</strong></div>")
-        				}
-        				else
-        					$("#sel").append("<div>"+(i+1)+". "+quest[i].question+"</div>");
-        				
-        				 let value = [obj[i].answer01,obj[i].answer02,obj[i].answer03,obj[i].answer04,obj[i].answer05,
-                         	obj[i].answer06,obj[i].answer07,obj[i].answer08,obj[i].answer09,obj[i].answer10];
-                         
-        				 for(let j =1; j<11; j++){
-                         	if(value[j-1]!=null ){
-                         	//if(i+1 == 145 || i+1 ==146)
-                     		//$("#sel").append("<div class="item_select_answer"><div class="common_ipt_wrap type_dropmenu"><a href="javascript:void(0)" class="link_selected">직업을 선택해주세요.<span class="ico_common ico_arrow"></span></a> <span class="hidden">선택옵션</span> <div class="box_select" style="top: 43px; background: rgb(255, 255, 255); max-height: 131px; overflow-y: auto;"><ul class="list_select"><li><a href="javascript:void(0)" class="link_opt">가수</a></li><li><a href="javascript:void(0)" class="link_opt">간호사</a></li><li><a href="javascript:void(0)" class="link_opt">개그맨</a></li><li><a href="javascript:void(0)" class="link_opt">건축가</a></li><li><a href="javascript:void(0)" class="link_opt">경기심판</a></li><li><a href="javascript:void(0)" class="link_opt">경영컨설턴트</a></li><li><a href="javascript:void(0)" class="link_opt">경제학연구원</a></li><li><a href="javascript:void(0)" class="link_opt">경찰관</a></li><li><a href="javascript:void(0)" class="link_opt">경호원</a></li><li><a href="javascript:void(0)" class="link_opt">고위공무원</a></li><li><a href="javascript:void(0)" class="link_opt">공업기계조작원</a></li><li><a href="javascript:void(0)" class="link_opt">공인중개인</a></li><li><a href="javascript:void(0)" class="link_opt">과수작물 재배자</a></li><li><a href="javascript:void(0)" class="link_opt">교육학연구원</a></li><li><a href="javascript:void(0)" class="link_opt">교장</a></li><li><a href="javascript:void(0)" class="link_opt">국악인</a></li><li><a href="javascript:void(0)" class="link_opt">국제긴급구호요원</a></li><li><a href="javascript:void(0)" class="link_opt">국회의원</a></li><li><a href="javascript:void(0)" class="link_opt">군인</a></li><li><a href="javascript:void(0)" class="link_opt">극작가</a></li><li><a href="javascript:void(0)" class="link_opt">기업고위임원</a></li><li><a href="javascript:void(0)" class="link_opt">기자</a></li><li><a href="javascript:void(0)" class="link_opt">다문화가정상담전문가</a></li><li><a href="javascript:void(0)" class="link_opt">대체에너지개발연구원</a></li><li><a href="javascript:void(0)" class="link_opt">동물조련사</a></li><li><a href="javascript:void(0)" class="link_opt">드라마작가</a></li><li><a href="javascript:void(0)" class="link_opt">로봇연구원</a></li><li><a href="javascript:void(0)" class="link_opt">마술사</a></li><li><a href="javascript:void(0)" class="link_opt">만화가</a></li><li><a href="javascript:void(0)" class="link_opt">모델</a></li><li><a href="javascript:void(0)" class="link_opt">물리학자</a></li><li><a href="javascript:void(0)" class="link_opt">방송 작가</a></li><li><a href="javascript:void(0)" class="link_opt">변호사</a></li><li><a href="javascript:void(0)" class="link_opt">비서</a></li><li><a href="javascript:void(0)" class="link_opt">비행기승무원</a></li><li><a href="javascript:void(0)" class="link_opt">비행기조종사</a></li><li><a href="javascript:void(0)" class="link_opt">사서</a></li><li><a href="javascript:void(0)" class="link_opt">사회복지사</a></li><li><a href="javascript:void(0)" class="link_opt">상담가</a></li><li><a href="javascript:void(0)" class="link_opt">생물학자</a></li><li><a href="javascript:void(0)" class="link_opt">서비스강사</a></li><li><a href="javascript:void(0)" class="link_opt">세무사</a></li><li><a href="javascript:void(0)" class="link_opt">소방관</a></li><li><a href="javascript:void(0)" class="link_opt">소설가</a></li><li><a href="javascript:void(0)" class="link_opt">쇼핑호스트</a></li><li><a href="javascript:void(0)" class="link_opt">수학연구원</a></li><li><a href="javascript:void(0)" class="link_opt">스턴트맨</a></li><li><a href="javascript:void(0)" class="link_opt">스포츠강사</a></li><li><a href="javascript:void(0)" class="link_opt">스포츠트레이너</a></li><li><a href="javascript:void(0)" class="link_opt">시니어컨설턴트</a></li><li><a href="javascript:void(0)" class="link_opt">시인</a></li><li><a href="javascript:void(0)" class="link_opt">심리학연구원</a></li><li><a href="javascript:void(0)" class="link_opt">아나운서</a></li><li><a href="javascript:void(0)" class="link_opt">애니메이션작가</a></li><li><a href="javascript:void(0)" class="link_opt">역사학연구원</a></li><li><a href="javascript:void(0)" class="link_opt">연극연출가</a></li><li><a href="javascript:void(0)" class="link_opt">연기자</a></li><li><a href="javascript:void(0)" class="link_opt">연주가</a></li><li><a href="javascript:void(0)" class="link_opt">영화감독</a></li><li><a href="javascript:void(0)" class="link_opt">외교관</a></li><li><a href="javascript:void(0)" class="link_opt">외환딜러</a></li><li><a href="javascript:void(0)" class="link_opt">운동선수</a></li><li><a href="javascript:void(0)" class="link_opt">웹디자이너</a></li><li><a href="javascript:void(0)" class="link_opt">은행출납사무원</a></li><li><a href="javascript:void(0)" class="link_opt">응급구조사</a></li><li><a href="javascript:void(0)" class="link_opt">의사</a></li><li><a href="javascript:void(0)" class="link_opt">의학연구원</a></li><li><a href="javascript:void(0)" class="link_opt">이러닝(E-learning)교수설계사</a></li><li><a href="javascript:void(0)" class="link_opt">인테리어디자이너</a></li><li><a href="javascript:void(0)" class="link_opt">일러스트레이터</a></li><li><a href="javascript:void(0)" class="link_opt">일반공무원</a></li><li><a href="javascript:void(0)" class="link_opt">자동차영업원</a></li><li><a href="javascript:void(0)" class="link_opt">자동차정비원</a></li><li><a href="javascript:void(0)" class="link_opt">작곡가</a></li><li><a href="javascript:void(0)" class="link_opt">재활승마운동사</a></li><li><a href="javascript:void(0)" class="link_opt">제품디자이너</a></li><li><a href="javascript:void(0)" class="link_opt">조경원</a></li><li><a href="javascript:void(0)" class="link_opt">중∙고등학교 교사(문과)</a></li><li><a href="javascript:void(0)" class="link_opt">중∙고등학교 교사(이과)</a></li><li><a href="javascript:void(0)" class="link_opt">지질학연구원</a></li><li><a href="javascript:void(0)" class="link_opt">지휘자</a></li><li><a href="javascript:void(0)" class="link_opt">천문학자</a></li><li><a href="javascript:void(0)" class="link_opt">철도 및 지하철기관사</a></li><li><a href="javascript:void(0)" class="link_opt">철학연구원</a></li><li><a href="javascript:void(0)" class="link_opt">초등교사</a></li><li><a href="javascript:void(0)" class="link_opt">컴퓨터프로그래머</a></li><li><a href="javascript:void(0)" class="link_opt">특용작물 재배자</a></li><li><a href="javascript:void(0)" class="link_opt">판매원</a></li><li><a href="javascript:void(0)" class="link_opt">패션디자이너</a></li><li><a href="javascript:void(0)" class="link_opt">폴리아티스트(음향효과맨)</a></li><li><a href="javascript:void(0)" class="link_opt">프로게이머</a></li><li><a href="javascript:void(0)" class="link_opt">항공기정비원</a></li><li><a href="javascript:void(0)" class="link_opt">호텔지배인</a></li><li><a href="javascript:void(0)" class="link_opt">화가</a></li><li><a href="javascript:void(0)" class="link_opt">화학자</a></li><li><a href="javascript:void(0)" class="link_opt">화훼재배자</a></li><li><a href="javascript:void(0)" class="link_opt">회계사무원</a></li><li><a href="javascript:void(0)" class="link_opt">기타(오른쪽에 직접 입력)</a></li><li><a href="javascript:void(0)" class="link_opt">아직 결정 못함</a></li></ul></div></div> <div class="pnael_answer_inp"><input type="text" id="inpPanelAnswer" disabled="disabled" class="inp_answer"> <label for="inpPanelAnswer" class="lab_answer">기타 선택 시 직업명 입력</label></div></div><br>");
-                         	//else if(i+1 == 149 || i+1==150)
-                         	//$("#sel").append("<div class="common_ipt_wrap type_dropmenu"><a href="javascript:void(0)" class="link_selected">국어<span class="ico_common ico_arrow"></span></a> <span class="hidden">선택옵션</span> <div class="box_select" style="top: 43px; background: rgb(255, 255, 255); max-height: 131px; overflow-y: auto;"><ul class="list_select"><li><a href="javascript:void(0)" class="link_opt">국어</a></li><li><a href="javascript:void(0)" class="link_opt">사회(사회/역사)</a></li><li><a href="javascript:void(0)" class="link_opt">도덕</a></li><li><a href="javascript:void(0)" class="link_opt">수학</a></li><li><a href="javascript:void(0)" class="link_opt">과학</a></li><li><a href="javascript:void(0)" class="link_opt">기술가정</a></li><li><a href="javascript:void(0)" class="link_opt">체육</a></li><li><a href="javascript:void(0)" class="link_opt">음악</a></li><li><a href="javascript:void(0)" class="link_opt">미술</a></li><li><a href="javascript:void(0)" class="link_opt">영어</a></li><li><a href="javascript:void(0)" class="link_opt">한문</a></li><li><a href="javascript:void(0)" class="link_opt">보건</a></li><li><a href="javascript:void(0)" class="link_opt">진로와 직업</a></li><li><a href="javascript:void(0)" class="link_opt">제2외국어</a></li><li><a href="javascript:void(0)" class="link_opt">기타</a></li></ul></div></div><br>");
-                         	//else
-                         	$("#sel").append("<input type='radio' name='chk"+(i+1)+"' value=" +j+ ">" +value[j-1]+"<br>");
-                         	}
-                         	else
-                         		continue;
-                         }
-      		           		$("#sel").append("<br>");
-        			}
-        		}
-        		else if(t==22 || t==23){
-        			for(let i = 0; i<obj.length; i++){
-        				$("#sel").append("<div>"+(i+1)+". "+quest[i].question+"</div>");
-        				
-        				 let value = [obj[i].answer01,obj[i].answer02,obj[i].answer03,obj[i].answer04,obj[i].answer05,
-                         	obj[i].answer06,obj[i].answer07,obj[i].answer08,obj[i].answer09,obj[i].answer10];
-                         
-        				 for(let j =1; j<11; j++){
-                         	if(value[j-1]!=null ){
-                         	if(i == 37)
-                         	$("#sel").append("<input type = 'text' name='job' value='"+$(this).val()+"'><<br>");
-                         	else
-                         	$("#sel").append("<input type='radio' name='chk"+(i+1)+"' value=" +j+ ">" +value[j-1]+"<br>");
-                         	}
-                         	else
-                         		continue;
-                         }
-      		           		$("#sel").append("<br>");
-        			}
-        		}else{
+        		
+        		else{
         		
         		for(let i = 0; i<obj.length; i++){
-                    $("#sel").append("<div>"+(i+1)+". "+quest[i].question+"</div>");
+                    $("#sel").append("<div class='alert alert-success' role='alert' style='font-size:145%; margin: 0 0 5px 0'>"+(i+1)+". "+quest[i].question+"</div>");
                    
                     let value = [obj[i].answer01,obj[i].answer02,obj[i].answer03,obj[i].answer04,obj[i].answer05,
                     	obj[i].answer06,obj[i].answer07,obj[i].answer08,obj[i].answer09,obj[i].answer10];
                 	
+                    
                     for(let j =1; j<11; j++){
-                    	if(value[j-1]!=null )
-                		$("#sel").append("<input type='radio' name='chk"+(i+1)+"' value=" +j+ ">" +value[j-1]+"<br>");
+                    	
+                    	if(j==10){
+                    		$("#sel").append("</div>");
+                    	}
+                    	if(value[j-1]!=null ){
+                		//$("#sel").append("<input type='radio' name='chk"+(i+1)+"' value=" +j+ ">" +value[j-1]+"<br>");
+                		if(j==1){
+                		$("#sel").append("<div class= 'btn-group btn-group-toggle' data-toggle = 'buttons'>");
+                		}
+                		else{
+                		$("#sel").append("<label class = 'btn btn-info'><input type='radio' name='chk"+(i+1)+"' id='option"+j+"' value = "+j+">"+value[j-1]+"</label><br>");
+                		//$("#sel").append("<input type='radio' name='options"+(i+1)+"'>"+value[j-1]+"</label><br>");
+                		}
+                    	}
                     	else
                     		continue;
+                    	
                     }
- 		           		$("#sel").append("<br>");
+                    	
+ 		           		$("#sel").append("<br><br>");
         			}
         		}
         	};
@@ -198,7 +224,7 @@
 						console.log(obj);
                      	quest = obj["RESULT"];
                      	
-                     	print(trgetSe,quest);
+                     	print(choice,quest);
                     	
                     }
                 });
